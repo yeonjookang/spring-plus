@@ -57,7 +57,7 @@ public class TodoService {
         LocalDateTime start = startDate != null ? startDate.atStartOfDay() : null;
         LocalDateTime end = endDate != null ? endDate.atTime(LocalTime.MAX) : null;
 
-        Page<Todo> todos = todoRepository.findAllByConditions(weather, start, end, pageable);
+        Page<Todo> todos = todoRepository.findAllByConditionsWithQueryDsl(weather, start, end, pageable);
 
         return todos.map(todo -> new TodoResponse(
                 todo.getId(),
